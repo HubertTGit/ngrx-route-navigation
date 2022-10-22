@@ -1,0 +1,5 @@
+<div class="flex justify-between">
+  <button *ngIf="showBack" (click)="goBack()">previous</button>
+  <h1>{{ title }}</h1>
+  <button *ngIf="showCancel" (click)="close()">cancel</button>
+</div>
