@@ -32,16 +32,6 @@ export class TitleComponent implements OnInit {
     this.title = data.title;
     this.showBack = data.showBack;
     this.showCancel = data.showCancel;
-
-    // this._active.data.subscribe({
-    //   next: (data) => {
-    //     this.title = data?.['title'];
-    //     this.showCancel = data?.['showCancel'];
-    //     this.showBack = data?.['showBack'];
-
-    //     console.log(data);
-    //   },
-    // });
   }
 
   goBack() {}

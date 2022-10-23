@@ -11,6 +11,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { Pop1Component } from './dialog/pop1/pop1.component';
 import { Pop2Component } from './dialog/pop2/pop2.component';
 import { TitleComponent } from './dialog/title/title.component';
+import { StoreModule } from '@ngrx/store';
+import { booksReducer } from './state/books.reducer';
+import { collectionReducer } from './state/collection.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,12 @@ import { TitleComponent } from './dialog/title/title.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatDialogModule,
+    StoreModule.forRoot({
+      books: booksReducer,
+      collection: collectionReducer,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

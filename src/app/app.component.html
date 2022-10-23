@@ -1,46 +1,20 @@
-<ul>
-  <li><a routerLink="page1">page1</a></li>
-  <li><a routerLink="page2">page2</a></li>
-  <li>
+<ul class="flex">
+  <li class="p-3"><a routerLink="page1">page1</a></li>
+  <li class="p-3"><a routerLink="page2">page2</a></li>
+  <li class="p-3">
     <a
       [routerLink]="[{ outlets: { popup: ['dialog1'] } }]"
       [queryParams]="{ order: 'popular' }"
       >dialog 1</a
     >
   </li>
-  <li><a [routerLink]="[{ outlets: { popup: ['dialog2'] } }]">dialog 2</a></li>
-  <li><a [routerLink]="[{ outlets: { popup: null } }]">close</a></li>
+  <li class="p-3">
+    <a [routerLink]="[{ outlets: { popup: ['dialog2'] } }]">dialog 2</a>
+  </li>
+  <li class="p-3">
+    <a [routerLink]="[{ outlets: { popup: null } }]">close</a>
+  </li>
 </ul>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus
-  veniam sint. Delectus temporibus illo similique assumenda quasi rem, labore
-  voluptates aliquam expedita sapiente ducimus magni distinctio placeat ipsam
-  illum!
-</p>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus
-  veniam sint. Delectus temporibus illo similique assumenda quasi rem, labore
-  voluptates aliquam expedita sapiente ducimus magni distinctio placeat ipsam
-  illum!
-</p>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus
-  veniam sint. Delectus temporibus illo similique assumenda quasi rem, labore
-  voluptates aliquam expedita sapiente ducimus magni distinctio placeat ipsam
-  illum!
-</p>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus
-  veniam sint. Delectus temporibus illo similique assumenda quasi rem, labore
-  voluptates aliquam expedita sapiente ducimus magni distinctio placeat ipsam
-  illum!
-</p>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus
-  veniam sint. Delectus temporibus illo similique assumenda quasi rem, labore
-  voluptates aliquam expedita sapiente ducimus magni distinctio placeat ipsam
-  illum!
-</p>
 
 <router-outlet></router-outlet>
 <router-outlet name="popup"></router-outlet>
