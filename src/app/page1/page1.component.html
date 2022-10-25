@@ -1,1 +1,21 @@
-<h1>page1 works!</h1>
+<h1>Books</h1>
+<button (click)="addAll()">add all</button>
+<ul>
+  <li *ngFor="let book of books$ | async" class="pb-3">
+    <small>{{ book.id }}</small>
+    <div>
+      <span class="font-bold">{{ book.volumeInfo.title }}</span> by
+      {{ book.volumeInfo.authors }}
+    </div>
+    <button (click)="add(book.id)">add</button>
+  </li>
+</ul>
+
+<h1>Collection</h1>
+<button (click)="removeAll()">remove all</button>
+<ul>
+  <li *ngFor="let collection of collection$ | async">
+    {{ collection?.volumeInfo?.title }}
+    <button (click)="remove(collection?.id!)">remove</button>
+  </li>
+</ul>

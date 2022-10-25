@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from './book.model';
-
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { addBook } from '../state/actions';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,4 +18,12 @@ export class BookService {
       )
       .pipe(map((books) => books.items.map((f) => f) || []));
   }
+}
+
+@Injectable({ providedIn: 'root' })
+export class SideEffectService {
+  private count = 0;
+  constructor(private actions$: Actions) {}
+
+  //   excellence$ = createEffect(() => this.actions$.pipe(ofType(addBook), map((book) => count++)))
 }

@@ -5,6 +5,8 @@ import { Pop1Component } from './dialog/pop1/pop1.component';
 import { Pop2Component } from './dialog/pop2/pop2.component';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
+import { getSelectors, RouterReducerState } from '@ngrx/router-store';
+import { StateGuard } from './state.guard';
 
 const routes: Routes = [
   { path: 'page1', component: Page1Component },
@@ -15,11 +17,9 @@ const routes: Routes = [
     outlet: 'popup',
     data: {
       component: Pop1Component,
-      showCancel: true,
-      showBack: true,
-      preserveQuery: true,
-      title: 'POP 1 TITLE',
+      preserveQuery: false,
     },
+    canActivate: [StateGuard],
   },
   {
     path: 'dialog2',
@@ -27,11 +27,9 @@ const routes: Routes = [
     outlet: 'popup',
     data: {
       component: Pop2Component,
-      showCancel: true,
-      showBack: true,
-      preserveQuery: true,
-      title: 'POP 2 TITLE',
+      preserveQuery: false,
     },
+    canActivate: [StateGuard],
   },
 ];
 
@@ -40,3 +38,15 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+export const {
+  selectCurrentRoute, // select the current route
+  selectFragment, // select the current route fragment
+  selectQueryParams, // select the current route query params
+  selectQueryParam, // factory function to select a query param
+  selectRouteParams, // select the current route params
+  selectRouteParam, // factory function to select a route param
+  selectRouteData, // select the current route data
+  selectUrl, // select the current url
+  selectTitle, // Select the title if available
+} = getSelectors();

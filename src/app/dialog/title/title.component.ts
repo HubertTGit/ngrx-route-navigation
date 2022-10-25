@@ -1,10 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy({ checkProperties: true })
@@ -14,31 +10,39 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   styleUrls: ['./title.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TitleComponent implements OnInit {
-  title = '';
-  showCancel = true;
-  showBack = false;
+export class TitleComponent {
+  @Input() showCancel = true;
+  @Input() prevPath: string | undefined;
+  @Input() preserveQuery = false;
 
-  constructor(
-    private _active: ActivatedRoute,
-    private router: Router,
-    private _ref: MatDialog
-  ) {}
-
-  ngOnInit(): void {
-    const re = this._ref.getDialogById('12');
-
-    const data = re?.['_ref'].config.data;
-    this.title = data.title;
-    this.showBack = data.showBack;
-    this.showCancel = data.showCancel;
-  }
-
-  goBack() {}
+  constructor(private router: Router, private _ref: MatDialog) {}
 
   close() {
-    this.router
-      .navigate([{ outlets: { popup: null } }])
-      .then(() => this._ref.closeAll());
+    if (this.preserveQuery) {
+      this.router.navigate([{ outlets: { popup: null } }], {
+        queryParamsHandling: 'merge',
+      });
+      this._close();
+      return;
+    }
+
+    this.router.navigate([{ outlets: { popup: null } }]);
+    this._close();
+  }
+
+  goBack() {
+    if (this.preserveQuery) {
+      this.router.navigate([{ outlets: { popup: [this.prevPath] } }], {
+        queryParamsHandling: 'merge',
+      });
+
+      return;
+    }
+
+    this.router.navigate([{ outlets: { popup: [this.prevPath] } }]);
+  }
+
+  private _close() {
+    this._ref.closeAll();
   }
 }

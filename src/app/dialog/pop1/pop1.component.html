@@ -1,4 +1,5 @@
-<app-title></app-title>
+<app-title [preserveQuery]="true">HELLO POP 1</app-title>
+<a [routerLink]="[{ outlets: { popup: ['dialog2'] } }]">goto dialog2</a>
 <div mat-dialog-content>
   <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sapiente

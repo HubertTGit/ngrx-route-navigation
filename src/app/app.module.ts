@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { booksReducer } from './state/books.reducer';
 import { collectionReducer } from './state/collection.reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot({
       books: booksReducer,
       collection: collectionReducer,
+      router: routerReducer,
     }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

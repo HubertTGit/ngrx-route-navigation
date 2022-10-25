@@ -8,16 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./pop1.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Pop1Component implements OnInit {
-  constructor(
-    private _router: Router,
-    private _dialog: MatDialog,
-    private _active: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    this._active.url.subscribe(console.log);
-  }
+export class Pop1Component {
+  constructor(private _router: Router, private _dialog: MatDialog) {}
 
   next() {
     this._dialog.closeAll();

@@ -4,12 +4,16 @@
   <li class="p-3">
     <a
       [routerLink]="[{ outlets: { popup: ['dialog1'] } }]"
-      [queryParams]="{ order: 'popular' }"
+      [queryParams]="{ order: 'mango', isGreat: true }"
       >dialog 1</a
     >
   </li>
   <li class="p-3">
-    <a [routerLink]="[{ outlets: { popup: ['dialog2'] } }]">dialog 2</a>
+    <a
+      [routerLink]="[{ outlets: { popup: ['dialog2'] } }]"
+      [queryParams]="{ order: 'banana', isGreat: false }"
+      >dialog 2</a
+    >
   </li>
   <li class="p-3">
     <a [routerLink]="[{ outlets: { popup: null } }]">close</a>
