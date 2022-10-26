@@ -12,4 +12,10 @@ export class DialogService {
   goto(path: RouteName, queryParams?: Params) {
     this._router.navigate([{ outlets: { popup: [path] } }], { queryParams });
   }
+
+  gotoTree(path: RouteName, queryParams?: Params) {
+    return this._router.createUrlTree([{ outlets: { popup: [path] } }], {
+      queryParams,
+    });
+  }
 }

@@ -2,11 +2,7 @@
   <li class="p-3"><a routerLink="page1">page1</a></li>
   <li class="p-3"><a routerLink="page2">page2</a></li>
   <li class="p-3">
-    <a
-      class="block bg-blue-500 rounded-lg"
-      [routerLink]="[{ outlets: { popup: [ROUTE.POP_1] } }]"
-      >PopUp</a
-    >
+    <a class="block bg-blue-500 rounded-lg" (click)="goto($event)">PopUp</a>
   </li>
 </ul>
 

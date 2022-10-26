@@ -11,7 +11,7 @@ import { DialogService } from '../dialog.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Pop1Component {
-  constructor(private _dialogService: DialogService) {}
+  constructor(private _dialogService: DialogService, private _router: Router) {}
 
   next() {
     const params: Partial<QueryParamCollection> = {
@@ -19,6 +19,8 @@ export class Pop1Component {
       [ParamName.ORDER]: 'set',
       [ParamName.PRICE]: 12,
     };
-    this._dialogService.goto(RouteName.POP_2, params);
+    const urlTree = this._dialogService.gotoTree(RouteName.POP_2, params);
+
+    this._router.navigateByUrl(urlTree.toString());
   }
 }

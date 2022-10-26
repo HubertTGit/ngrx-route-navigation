@@ -4,6 +4,7 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
+  UrlTree,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { delay, Observable, of, switchMap, take } from 'rxjs';
@@ -21,12 +22,16 @@ import { DialogService } from './dialog.service';
   providedIn: 'root',
 })
 export class StateGuard implements CanActivate {
-  constructor(private _store: Store, private _dialogService: DialogService) {}
+  constructor(
+    private _store: Store,
+    private _dialogService: DialogService,
+    private _router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> {
+  ): Observable<boolean | UrlTree> {
     const path = route.routeConfig?.path;
 
     return this._store
@@ -34,25 +39,30 @@ export class StateGuard implements CanActivate {
       .pipe(
         take(1),
         switchMap((qry) => {
-          const state =
-            path === RouteName.POP_2 &&
-            Object.keys(qry).some((string) => string === ParamName.LIKENESS);
+          // if (path === RouteName.POP_2) {
+          //   return of(this._dialogService.gotoTree(RouteName.POP_3));
+          // }
 
-          if (path === RouteName.POP_1 && !Object.keys(qry).length) {
-            return of(true);
+          if (Object.keys(qry).some((string) => string === ParamName.PRICE)) {
+            return of(this._dialogService.gotoTree(RouteName.POP_2));
           }
+          // const state =
+          //   path === RouteName.POP_2 &&
+          //   Object.keys(qry).some((string) => string === ParamName.LIKENESS);
 
-          if (state) {
-            return of(true);
-          }
+          // if (path === RouteName.POP_1 && !Object.keys(qry).length) {
+          //   return of(true);
+          // }
 
-          if (path === RouteName.POP_3) {
-            return of(true);
-          }
+          // if (state) {
+          //   return of(true);
+          // }
 
-          this._dialogService.goto(RouteName.POP_3);
+          // if (path === RouteName.POP_3) {
+          //   return of(true);
+          // }
 
-          return of(false);
+          return of(true);
         })
       );
   }

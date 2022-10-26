@@ -26,6 +26,8 @@ export class Page1Component implements OnInit {
   books: Book[] = [];
 
   ngOnInit(): void {
+    console.log('PAGE 1 INIT');
+
     this._books.getBooks().subscribe({
       next: (books) => {
         this._store.dispatch(retrieveBooks({ books }));
