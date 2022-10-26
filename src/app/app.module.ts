@@ -15,7 +15,13 @@ import { StoreModule } from '@ngrx/store';
 import { booksReducer } from './state/books.reducer';
 import { collectionReducer } from './state/collection.reducer';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  NavigationActionTiming,
+} from '@ngrx/router-store';
+import { MoviesStore } from './state/movies.state';
+import { Pop3Component } from './dialog/pop3/pop3.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,9 @@ import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
     DialogComponent,
     Pop1Component,
     Pop2Component,
+    Pop3Component,
     TitleComponent,
+    Pop3Component,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +46,11 @@ import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
       collection: collectionReducer,
       router: routerReducer,
     }),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({
+      navigationActionTiming: NavigationActionTiming.PreActivation,
+    }),
   ],
-  providers: [],
+  providers: [MoviesStore],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

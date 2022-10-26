@@ -12,37 +12,27 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 })
 export class TitleComponent {
   @Input() showCancel = true;
-  @Input() prevPath: string | undefined;
-  @Input() preserveQuery = false;
 
-  constructor(private router: Router, private _ref: MatDialog) {}
+  constructor(private router: Router, private _dialog: MatDialog) {}
 
   close() {
-    if (this.preserveQuery) {
-      this.router.navigate([{ outlets: { popup: null } }], {
-        queryParamsHandling: 'merge',
-      });
-      this._close();
-      return;
-    }
-
     this.router.navigate([{ outlets: { popup: null } }]);
     this._close();
   }
 
-  goBack() {
-    if (this.preserveQuery) {
-      this.router.navigate([{ outlets: { popup: [this.prevPath] } }], {
-        queryParamsHandling: 'merge',
-      });
+  // goBack() {
+  //   if (this.preserveQuery) {
+  //     this.router.navigate([{ outlets: { popup: [this.prevPath] } }], {
+  //       queryParamsHandling: 'merge',
+  //     });
 
-      return;
-    }
+  //     return;
+  //   }
 
-    this.router.navigate([{ outlets: { popup: [this.prevPath] } }]);
-  }
+  //   this.router.navigate([{ outlets: { popup: [this.prevPath] } }]);
+  // }
 
   private _close() {
-    this._ref.closeAll();
+    this._dialog.closeAll();
   }
 }

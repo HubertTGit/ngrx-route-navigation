@@ -5,14 +5,17 @@ import { Pop1Component } from './dialog/pop1/pop1.component';
 import { Pop2Component } from './dialog/pop2/pop2.component';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
+import { Pop3Component } from './dialog/pop3/pop3.component';
 import { getSelectors, RouterReducerState } from '@ngrx/router-store';
-import { StateGuard } from './state.guard';
+import { StateGuard } from './dialog/state.guard';
+import { RouteName } from './dialog/dialog.model';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'page1', pathMatch: 'full' },
   { path: 'page1', component: Page1Component },
   { path: 'page2', component: Page2Component },
   {
-    path: 'dialog1',
+    path: RouteName.POP_1,
     component: DialogComponent,
     outlet: 'popup',
     data: {
@@ -22,11 +25,21 @@ const routes: Routes = [
     canActivate: [StateGuard],
   },
   {
-    path: 'dialog2',
+    path: RouteName.POP_2,
     component: DialogComponent,
     outlet: 'popup',
     data: {
       component: Pop2Component,
+      preserveQuery: false,
+    },
+    canActivate: [StateGuard],
+  },
+  {
+    path: RouteName.POP_3,
+    component: DialogComponent,
+    outlet: 'popup',
+    data: {
+      component: Pop3Component,
       preserveQuery: false,
     },
     canActivate: [StateGuard],

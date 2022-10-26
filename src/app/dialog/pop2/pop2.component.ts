@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { RouteName } from '../dialog.model';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-pop2',
@@ -9,12 +9,11 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Pop2Component implements OnInit {
-  constructor(private _router: Router, private _dialog: MatDialog) {}
+  constructor(private _dialogService: DialogService) {}
 
   ngOnInit(): void {}
 
   previous() {
-    this._dialog.closeAll();
-    this._router.navigate([{ outlets: { popup: ['dialog1'] } }]);
+    this._dialogService.goto(RouteName.POP_1);
   }
 }

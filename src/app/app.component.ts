@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import {
-  selectQueryParam,
-  selectUrl,
-  selectQueryParams,
-} from './app-routing.module';
+import { RouteName } from './dialog/dialog.model';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +7,10 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private _store: Store, private _router: Router) {}
+  constructor() {}
   ngOnInit(): void {
-    this._store.select(selectQueryParam('order')).subscribe({
-      next: (r) => {
-        // if(r !== "banana")
-        // this._router.createUrlTree
-      },
-    });
+    // dummy
   }
   title = 'routing-example';
+  ROUTE = RouteName;
 }
