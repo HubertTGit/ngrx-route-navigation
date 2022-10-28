@@ -15,12 +15,11 @@ export class Pop1Component {
 
   next() {
     const params: Partial<QueryParamCollection> = {
-      // TODO: change to ORDER
-      [ParamName.ORDER]: 'set',
-      [ParamName.PRICE]: 12,
+      [ParamName.LIKENESS]: 'blue',
     };
-    const urlTree = this._dialogService.gotoTree(RouteName.POP_2, params);
 
-    this._router.navigateByUrl(urlTree.toString());
+    this._router.navigateByUrl(
+      this._dialogService.gotoTree(RouteName.POP_2, params)
+    );
   }
 }

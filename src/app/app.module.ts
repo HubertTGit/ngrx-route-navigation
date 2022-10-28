@@ -22,6 +22,7 @@ import {
 } from '@ngrx/router-store';
 import { MoviesStore } from './state/movies.state';
 import { Pop3Component } from './dialog/pop3/pop3.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { Pop3Component } from './dialog/pop3/pop3.component';
     Pop3Component,
     TitleComponent,
     Pop3Component,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { Pop3Component } from './dialog/pop3/pop3.component';
 import { getSelectors, RouterReducerState } from '@ngrx/router-store';
 import { StateGuard } from './dialog/state.guard';
 import { RouteName } from './dialog/dialog.model';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'page1', pathMatch: 'full' },
@@ -43,6 +44,10 @@ const routes: Routes = [
       preserveQuery: false,
     },
     canActivate: [StateGuard],
+  },
+  {
+    path: '**',
+    component: NotfoundComponent,
   },
 ];
 

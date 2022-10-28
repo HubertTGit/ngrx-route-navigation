@@ -1,4 +1,7 @@
-<app-title>HELLO POP 2</app-title>
+<app-title [prevPath]="prevPath" [preserveQuery]="false">HELLO POP 2</app-title>
+<button class="p-2 bg-purple-500 text-yellow-300 rounded-xl" (click)="goto()">
+  goto pop3
+</button>
 <div mat-dialog-content>
   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas at incidunt
   dolores velit suscipit sed sint, deserunt consectetur ipsum exercitationem

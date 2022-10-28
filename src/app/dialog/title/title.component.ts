@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { INIT } from '@ngrx/store';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -12,6 +13,8 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 })
 export class TitleComponent {
   @Input() showCancel = true;
+  @Input() preserveQuery = false;
+  @Input() prevPath: string | undefined;
 
   constructor(private router: Router, private _dialog: MatDialog) {}
 
@@ -20,17 +23,17 @@ export class TitleComponent {
     this._close();
   }
 
-  // goBack() {
-  //   if (this.preserveQuery) {
-  //     this.router.navigate([{ outlets: { popup: [this.prevPath] } }], {
-  //       queryParamsHandling: 'merge',
-  //     });
+  goBack() {
+    if (this.preserveQuery) {
+      this.router.navigate([{ outlets: { popup: [this.prevPath] } }], {
+        queryParamsHandling: 'merge',
+      });
 
-  //     return;
-  //   }
+      return;
+    }
 
-  //   this.router.navigate([{ outlets: { popup: [this.prevPath] } }]);
-  // }
+    this.router.navigate([{ outlets: { popup: [this.prevPath] } }]);
+  }
 
   private _close() {
     this._dialog.closeAll();

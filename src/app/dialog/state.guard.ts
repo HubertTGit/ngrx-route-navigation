@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ApplicationInitStatus, Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { delay, Observable, of, switchMap, take } from 'rxjs';
+import { delay, from, Observable, of, switchMap, take } from 'rxjs';
 import {
   selectCurrentRoute,
   selectRouteParams,
@@ -25,44 +25,25 @@ export class StateGuard implements CanActivate {
   constructor(
     private _store: Store,
     private _dialogService: DialogService,
-    private _router: Router
+    private _router: Router,
+    private _initStatus: ApplicationInitStatus
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
-    const path = route.routeConfig?.path;
+    const path = route.routeConfig?.path as RouteName;
 
     return this._store
       .select<Partial<QueryParamCollection>>(selectQueryParams)
       .pipe(
         take(1),
         switchMap((qry) => {
-          // if (path === RouteName.POP_2) {
-          //   return of(this._dialogService.gotoTree(RouteName.POP_3));
-          // }
-
-          if (Object.keys(qry).some((string) => string === ParamName.PRICE)) {
-            return of(this._dialogService.gotoTree(RouteName.POP_2));
+          if (this._dialogService.checkValidity(path, qry)) {
+            return of(true);
           }
-          // const state =
-          //   path === RouteName.POP_2 &&
-          //   Object.keys(qry).some((string) => string === ParamName.LIKENESS);
-
-          // if (path === RouteName.POP_1 && !Object.keys(qry).length) {
-          //   return of(true);
-          // }
-
-          // if (state) {
-          //   return of(true);
-          // }
-
-          // if (path === RouteName.POP_3) {
-          //   return of(true);
-          // }
-
-          return of(true);
+          return of(this._dialogService.gotoTree(RouteName.POP_1));
         })
       );
   }

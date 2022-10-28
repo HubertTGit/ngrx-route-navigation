@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { QueryParamCollection, RouteName } from './dialog/dialog.model';
+import {
+  ParamName,
+  QueryParamCollection,
+  RouteName,
+} from './dialog/dialog.model';
 import { DialogService } from './dialog/dialog.service';
 
 @Component({
@@ -17,9 +21,6 @@ export class AppComponent implements OnInit {
 
   goto(e: Event) {
     e.preventDefault();
-    const queryParams: Partial<QueryParamCollection> = {
-      likeness: 'set',
-    };
-    this._dialogService.goto(RouteName.POP_1, queryParams);
+    this._dialogService.goto(RouteName.POP_1);
   }
 }
