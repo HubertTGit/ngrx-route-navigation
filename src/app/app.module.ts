@@ -12,8 +12,6 @@ import { Pop1Component } from './dialog/pop1/pop1.component';
 import { Pop2Component } from './dialog/pop2/pop2.component';
 import { TitleComponent } from './dialog/title/title.component';
 import { StoreModule } from '@ngrx/store';
-import { booksReducer } from './state/books.reducer';
-import { collectionReducer } from './state/collection.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import {
   StoreRouterConnectingModule,
@@ -22,9 +20,11 @@ import {
 } from '@ngrx/router-store';
 import { Pop3Component } from './dialog/pop3/pop3.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { productsReducer } from './state/product.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { ProductsEffectService } from './state/product.effect.service';
+import { ProductsEffectService } from './state/products/product.effect.service';
+import { booksReducer } from './state/books/books.reducer';
+import { collectionReducer } from './state/books/collection.reducer';
+import { productsReducer } from './state/products/product.reducer';
 
 @NgModule({
   declarations: [

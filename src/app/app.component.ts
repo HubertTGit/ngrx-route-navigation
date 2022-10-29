@@ -5,7 +5,7 @@ import {
   RouteName,
 } from './dialog/dialog.model';
 import { DialogService } from './dialog/dialog.service';
-import { ProductsEffectService } from './state/product.effect.service';
+import { ProductsEffectService } from './state/products/product.effect.service';
 
 @Component({
   selector: 'app-root',

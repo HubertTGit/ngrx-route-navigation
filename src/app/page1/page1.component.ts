@@ -7,7 +7,10 @@ import {
   removeAllBooks,
   addAllBooks,
 } from '../state/actions';
-import { selectBookCollection, selectBooks } from '../state/book.selector';
+import {
+  selectBookCollection,
+  selectBooks,
+} from '../state/books/book.selector';
 import { Book } from '../services/book.model';
 import { BookService } from '../services/book.service';
 

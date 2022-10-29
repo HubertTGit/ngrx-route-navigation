@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { catchError, ignoreElements, take } from 'rxjs';
 import { loadProductsState } from 'src/app/state/actions';
-import { ProductsEffectService } from 'src/app/state/product.effect.service';
+import { ProductsEffectService } from 'src/app/state/products/product.effect.service';
 import {
   selectProducts,
   selectProductState,
-} from 'src/app/state/products.selector';
+} from 'src/app/state/products/products.selector';
+
 import { RouteName } from '../dialog.model';
 import { DialogService } from '../dialog.service';
 

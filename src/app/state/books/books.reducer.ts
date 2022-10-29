@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Book, BookState } from '../services/book.model';
-import { retrieveBooks } from './actions';
+import { BookState } from 'src/app/services/book.model';
+import { retrieveBooks } from '../actions';
 
 const init: BookState = {
   books: [],

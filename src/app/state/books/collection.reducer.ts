@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { addAllBooks, addBook, removeAllBooks, removeBook } from './actions';
+import { removeBook, addBook, removeAllBooks, addAllBooks } from '../actions';
 
 export const collectionReducer = createReducer<ReadonlyArray<string>>(
   [],

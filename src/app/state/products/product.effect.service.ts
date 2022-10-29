@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { selectQueryParam } from '../app-routing.module';
-import { ParamName } from '../dialog/dialog.model';
+import { selectQueryParam } from '../../app-routing.module';
+import { ParamName } from '../../dialog/dialog.model';
 import { routerNavigationAction } from '@ngrx/router-store';
 import { catchError, filter, mergeMap, of, switchMap, take, tap } from 'rxjs';
-import { loadAllProducts, loadProductsState } from './actions';
+import { loadAllProducts, loadProductsState } from '../actions';
 import { Store } from '@ngrx/store';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../../services/product.service';
 
 @Injectable({
   providedIn: 'root',
