@@ -18,7 +18,7 @@ import { BookService } from '../services/book.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Page1Component implements OnInit {
-  books$ = this._store.select(selectBooks);
+  bookState$ = this._store.select(selectBooks);
   collection$ = this._store.select(selectBookCollection);
 
   constructor(private _books: BookService, private _store: Store) {}
@@ -49,8 +49,8 @@ export class Page1Component implements OnInit {
 
   addAll() {
     let t: readonly Book[] = [];
-    this.books$.forEach((g) => {
-      t = g;
+    this.bookState$.forEach((g) => {
+      t = g.books;
     });
     const ee = t.map((j) => j.id);
     this._store.dispatch(addAllBooks({ books: ee }));
