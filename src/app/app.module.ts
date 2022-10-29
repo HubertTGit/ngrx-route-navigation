@@ -25,6 +25,7 @@ import { ProductsEffectService } from './state/products/product.effect.service';
 import { booksReducer } from './state/books/books.reducer';
 import { collectionReducer } from './state/books/collection.reducer';
 import { productsReducer } from './state/products/product.reducer';
+import { BookEffectsService } from './state/books/book.effects.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { productsReducer } from './state/products/product.reducer';
     StoreRouterConnectingModule.forRoot({
       navigationActionTiming: NavigationActionTiming.PreActivation,
     }),
-    EffectsModule.forRoot([ProductsEffectService]),
+    EffectsModule.forRoot([ProductsEffectService, BookEffectsService]),
   ],
   bootstrap: [AppComponent],
 })

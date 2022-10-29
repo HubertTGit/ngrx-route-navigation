@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadBooksState } from 'src/app/state/actions';
+import { loadBookState, selectBooks } from 'src/app/state/books/book.selector';
 import { ParamName, QueryParamCollection, RouteName } from '../dialog.model';
 import { DialogService } from '../dialog.service';
 
@@ -9,10 +12,23 @@ import { DialogService } from '../dialog.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Pop2Component implements OnInit {
-  prevPath = RouteName.POP_1;
-  constructor(private _dialogService: DialogService) {}
+  books$ = this._store.select(selectBooks);
+  state$ = this._store.select(loadBookState);
 
-  ngOnInit(): void {}
+  prevPath = RouteName.POP_1;
+  constructor(private _dialogService: DialogService, private _store: Store) {}
+
+  ngOnInit(): void {
+    this.state$.subscribe({
+      next: (result) => {
+        console.log(result);
+        if (result === 'error') {
+          this._dialogService.gotoNavigation(RouteName.POP_1);
+          this._store.dispatch(loadBooksState({ state: 'pending' }));
+        }
+      },
+    });
+  }
 
   previous() {
     this._dialogService.gotoNavigation(RouteName.POP_1);

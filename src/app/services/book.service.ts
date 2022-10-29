@@ -9,7 +9,7 @@ import { Book } from './book.model';
 export class BookService {
   constructor(private _http: HttpClient) {}
 
-  getBooksByAuthor(author = 'daniel'): Observable<Book[]> {
+  getBooksByAuthor(author: string): Observable<Book[]> {
     return this._http
       .get<{ items: Book[] }>(
         `https://www.googleapis.com/books/v1/volumes?maxResults=10&orderBy=relevance&q=${author}`

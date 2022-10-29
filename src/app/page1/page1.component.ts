@@ -29,7 +29,7 @@ export class Page1Component implements OnInit {
   books: Book[] = [];
 
   ngOnInit(): void {
-    this._books.getBooksByAuthor().subscribe({
+    this._books.getBooksByAuthor('jack').subscribe({
       next: (books) => {
         this._store.dispatch(retrieveBooks({ books }));
       },

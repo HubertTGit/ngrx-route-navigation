@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { catchError, ignoreElements, take } from 'rxjs';
 import { loadProductsState } from 'src/app/state/actions';
-import { ProductsEffectService } from 'src/app/state/products/product.effect.service';
 import {
   selectProducts,
   selectProductState,

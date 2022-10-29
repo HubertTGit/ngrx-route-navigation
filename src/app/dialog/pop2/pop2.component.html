@@ -3,8 +3,13 @@
   goto pop3
 </button>
 <div mat-dialog-content>
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas at incidunt
-  dolores velit suscipit sed sint, deserunt consectetur ipsum exercitationem
-  cumque esse inventore fugiat repellendus pariatur totam aliquam neque.
-  Facilis?
+  <ul *ngIf="books$ | async as bookstate">
+    <li *ngFor="let book of bookstate.books">
+      {{ book.volumeInfo.title }}
+      by
+      <strong>
+        {{ book.volumeInfo.authors }}
+      </strong>
+    </li>
+  </ul>
 </div>
