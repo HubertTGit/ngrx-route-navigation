@@ -5,7 +5,7 @@ import {
   RouteName,
 } from './dialog/dialog.model';
 import { DialogService } from './dialog/dialog.service';
-import { MovieEffectService } from './state/product.effect.service';
+import { ProductsEffectService } from './state/product.effect.service';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +15,15 @@ import { MovieEffectService } from './state/product.effect.service';
 export class AppComponent implements OnInit {
   constructor(
     private _dialogService: DialogService,
-    private movieEffectService: MovieEffectService
+    private movieEffectService: ProductsEffectService
   ) {}
-  ngOnInit(): void {
-    this.movieEffectService.$movies.subscribe(console.log);
-  }
+  ngOnInit(): void {}
 
   title = 'routing-example';
   ROUTE = RouteName;
 
   goto(e: Event) {
     e.preventDefault();
-    this._dialogService.goto(RouteName.POP_1);
+    this._dialogService.gotoNavigation(RouteName.POP_1);
   }
 }

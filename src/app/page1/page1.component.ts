@@ -26,8 +26,6 @@ export class Page1Component implements OnInit {
   books: Book[] = [];
 
   ngOnInit(): void {
-    console.log('PAGE 1 INIT');
-
     this._books.getBooks().subscribe({
       next: (books) => {
         this._store.dispatch(retrieveBooks({ books }));
@@ -55,7 +53,6 @@ export class Page1Component implements OnInit {
       t = g;
     });
     const ee = t.map((j) => j.id);
-    console.log(ee);
     this._store.dispatch(addAllBooks({ books: ee }));
   }
 }

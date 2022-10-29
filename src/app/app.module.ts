@@ -25,7 +25,7 @@ import { Pop3Component } from './dialog/pop3/pop3.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { productsReducer } from './state/product.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { MovieEffectService } from './state/product.effect.service';
+import { ProductsEffectService } from './state/product.effect.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { MovieEffectService } from './state/product.effect.service';
     StoreRouterConnectingModule.forRoot({
       navigationActionTiming: NavigationActionTiming.PreActivation,
     }),
-    EffectsModule.forRoot([MovieEffectService]),
+    EffectsModule.forRoot([ProductsEffectService]),
   ],
   providers: [MoviesStore],
   bootstrap: [AppComponent],

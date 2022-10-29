@@ -10,7 +10,7 @@ import { ParamName, QueryParamCollection, RouteName } from './dialog.model';
 export class DialogService {
   constructor(private _router: Router, private _dialog: MatDialog) {}
 
-  goto(path: RouteName, queryParams?: Params) {
+  gotoNavigation(path: RouteName, queryParams?: Params) {
     this._router.navigate([{ outlets: { popup: [path] } }], { queryParams });
   }
 
@@ -44,12 +44,13 @@ export class DialogService {
   }
 
   private comparisonHelper(
-    qry: Partial<QueryParamCollection>,
-    allowed: ParamName[]
+    sourceQry: Partial<QueryParamCollection>,
+    allowedQry: ParamName[]
   ): boolean {
     return (
-      Object.keys(qry).every((v) => allowed.includes(v as ParamName)) &&
-      Object.keys(qry).length > 0
+      Object.keys(sourceQry).every((v) =>
+        allowedQry.includes(v as ParamName)
+      ) && Object.keys(sourceQry).length > 0
     );
   }
 }

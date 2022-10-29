@@ -13,14 +13,16 @@ import {
   of,
   switchMap,
   take,
+  tap,
+  throwError,
 } from 'rxjs';
-import { loadAllProducts } from './actions';
+import { loadAllProducts, loadProductsState } from './actions';
 import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MovieEffectService {
+export class ProductsEffectService {
   constructor(
     private actions$: Actions,
     private moviesService: MovieService,
@@ -31,30 +33,27 @@ export class MovieEffectService {
     () =>
       this.actions$.pipe(
         ofType(routerNavigationAction),
+        take(1),
         mergeMap(() => {
           return this._store.select(selectQueryParam(ParamName.PRICE)).pipe(
-            take(1),
             filter((f) => !!f),
             switchMap((limit) => {
-              return this.moviesService
-                .getAllMovies(limit!)
-                .pipe(
-                  map((movies) =>
-                    this._store.dispatch(
-                      loadAllProducts({ movies: movies.products })
-                    )
-                  )
-                );
-            }),
-            catchError((error) => EMPTY)
+              return this.moviesService.getAllMovies(limit!).pipe(
+                tap((movies) => {
+                  this._store.dispatch(
+                    loadAllProducts({ products: movies.products })
+                  );
+                  this._store.dispatch(loadProductsState({ state: 'success' }));
+                }),
+                catchError((error) => {
+                  this._store.dispatch(loadProductsState({ state: 'error' }));
+                  return of('error');
+                })
+              );
+            })
           );
         })
       ),
     { dispatch: false }
   );
-
-  // return this.moviesService.getAllMovies(5).pipe(
-  //   map((v) => loadAllMovies({ movies: v.products })),
-  //   catchError((error) => EMPTY)
-  // );
 }

@@ -1,5 +1,9 @@
-import { createFeatureSelector } from '@ngrx/store';
-import { MoviesProduct } from './product.service';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ProductState } from './product.reducer';
 
-export const selectProducts =
-  createFeatureSelector<ReadonlyArray<MoviesProduct>>('products');
+export const selectProducts = createFeatureSelector<ProductState>('products');
+
+export const selectProductState = createSelector(
+  selectProducts,
+  (s) => s.state
+);

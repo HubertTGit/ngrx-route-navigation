@@ -15,7 +15,7 @@ export class Pop2Component implements OnInit {
   ngOnInit(): void {}
 
   previous() {
-    this._dialogService.goto(RouteName.POP_1);
+    this._dialogService.gotoNavigation(RouteName.POP_1);
   }
 
   goto() {
@@ -23,6 +23,6 @@ export class Pop2Component implements OnInit {
       [ParamName.ORDER]: 'Same',
       [ParamName.PRICE]: 10,
     };
-    this._dialogService.goto(RouteName.POP_3, queryParams);
+    this._dialogService.gotoNavigation(RouteName.POP_3, queryParams);
   }
 }
