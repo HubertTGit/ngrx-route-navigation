@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Movie, MoviesStore } from '../state/movies.state';
+import { Store } from '@ngrx/store';
+import { Movie, MoviesStore } from '../state/movies.component.state';
+import { selectProducts } from '../state/products.selector';
 
 @Component({
   selector: 'app-page2',
@@ -10,7 +12,10 @@ import { Movie, MoviesStore } from '../state/movies.state';
 export class Page2Component implements OnInit {
   movies$ = this.moviesStore.movies$;
 
-  constructor(private readonly moviesStore: MoviesStore) {}
+  constructor(
+    private readonly moviesStore: MoviesStore,
+    private _store: Store
+  ) {}
 
   ngOnInit(): void {}
 

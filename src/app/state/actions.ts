@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Book } from './../page1/book.model';
+import { MoviesProduct } from './product.service';
 
 export const addBook = createAction(
   '[collection] add',
@@ -21,4 +22,9 @@ export const addAllBooks = createAction(
 export const retrieveBooks = createAction(
   '[collection] retrieve all',
   props<{ books: ReadonlyArray<Book> }>()
+);
+
+export const loadAllProducts = createAction(
+  '[products] get all movies',
+  props<{ movies: ReadonlyArray<MoviesProduct> }>()
 );

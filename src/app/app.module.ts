@@ -20,9 +20,12 @@ import {
   routerReducer,
   NavigationActionTiming,
 } from '@ngrx/router-store';
-import { MoviesStore } from './state/movies.state';
+import { MoviesStore } from './state/movies.component.state';
 import { Pop3Component } from './dialog/pop3/pop3.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { productsReducer } from './state/product.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { MovieEffectService } from './state/product.effect.service';
 
 @NgModule({
   declarations: [
@@ -47,10 +50,12 @@ import { NotfoundComponent } from './notfound/notfound.component';
       books: booksReducer,
       collection: collectionReducer,
       router: routerReducer,
+      products: productsReducer,
     }),
     StoreRouterConnectingModule.forRoot({
       navigationActionTiming: NavigationActionTiming.PreActivation,
     }),
+    EffectsModule.forRoot([MovieEffectService]),
   ],
   providers: [MoviesStore],
   bootstrap: [AppComponent],

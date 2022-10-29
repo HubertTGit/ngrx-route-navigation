@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectProducts } from 'src/app/state/products.selector';
 import { RouteName } from '../dialog.model';
 
 @Component({
@@ -8,7 +10,9 @@ import { RouteName } from '../dialog.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Pop3Component implements OnInit {
-  constructor() {}
+  products$ = this._store.select(selectProducts);
+
+  constructor(private _store: Store) {}
 
   prevPath = RouteName.POP_2;
 

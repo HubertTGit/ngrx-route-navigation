@@ -5,6 +5,7 @@ import {
   RouteName,
 } from './dialog/dialog.model';
 import { DialogService } from './dialog/dialog.service';
+import { MovieEffectService } from './state/product.effect.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,14 @@ import { DialogService } from './dialog/dialog.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private _dialogService: DialogService) {}
+  constructor(
+    private _dialogService: DialogService,
+    private movieEffectService: MovieEffectService
+  ) {}
   ngOnInit(): void {
-    // dummy
+    this.movieEffectService.$movies.subscribe(console.log);
   }
+
   title = 'routing-example';
   ROUTE = RouteName;
 

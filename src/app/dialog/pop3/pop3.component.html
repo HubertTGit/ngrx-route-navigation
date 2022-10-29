@@ -1,8 +1,10 @@
 <app-title [prevPath]="prevPath" [preserveQuery]="true">HELLO POP 3</app-title>
 
 <div mat-dialog-content>
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas at incidunt
-  dolores velit suscipit sed sint, deserunt consectetur ipsum exercitationem
-  cumque esse inventore fugiat repellendus pariatur totam aliquam neque.
-  Facilis?
+  <p>Products</p>
+  <ul>
+    <li *ngFor="let product of products$ | async">
+      {{ product.title }} <strong>{{ product.price }}</strong>
+    </li>
+  </ul>
 </div>
