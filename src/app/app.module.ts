@@ -20,7 +20,6 @@ import {
   routerReducer,
   NavigationActionTiming,
 } from '@ngrx/router-store';
-import { MoviesStore } from './state/movies.component.state';
 import { Pop3Component } from './dialog/pop3/pop3.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { productsReducer } from './state/product.reducer';
@@ -57,7 +56,6 @@ import { ProductsEffectService } from './state/product.effect.service';
     }),
     EffectsModule.forRoot([ProductsEffectService]),
   ],
-  providers: [MoviesStore],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

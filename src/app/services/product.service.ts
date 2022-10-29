@@ -18,7 +18,7 @@ export interface MoviesProduct {
 @Injectable({
   providedIn: 'root',
 })
-export class MovieService {
+export class ProductService {
   constructor(private _http: HttpClient) {}
 
   getAllMovies(limit: string): Observable<Movies> {

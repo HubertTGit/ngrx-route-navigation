@@ -14,7 +14,7 @@ export class Pop1Component {
 
   next() {
     const params: Partial<QueryParamCollection> = {
-      [ParamName.LIKENESS]: 'blue',
+      [ParamName.AUTHOR]: 'blue',
     };
 
     this._router.navigateByUrl(

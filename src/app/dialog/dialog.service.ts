@@ -25,8 +25,8 @@ export class DialogService {
   }
 
   checkValidity(path: RouteName, qry: Partial<QueryParamCollection>): boolean {
-    const pop2 = [ParamName.LIKENESS];
-    const pop3 = [ParamName.ORDER, ParamName.PRICE];
+    const pop2 = [ParamName.AUTHOR];
+    const pop3 = [ParamName.ORDER, ParamName.LIMIT];
 
     if (path === RouteName.POP_1 && Object.keys(qry).length === 0) {
       return true;

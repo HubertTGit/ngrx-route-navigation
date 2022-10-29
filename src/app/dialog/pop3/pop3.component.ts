@@ -20,11 +20,7 @@ export class Pop3Component implements OnInit {
   products$ = this._store.select(selectProducts);
   state$ = this._store.select(selectProductState);
 
-  constructor(
-    private _store: Store,
-    private dialoService: DialogService,
-    private _effect: ProductsEffectService
-  ) {}
+  constructor(private _store: Store, private dialoService: DialogService) {}
 
   prevPath = RouteName.POP_2;
 

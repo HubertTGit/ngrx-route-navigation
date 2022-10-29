@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { MoviesProduct } from '../services/product.service';
 import { loadAllProducts, loadProductsState } from './actions';
-import { Movies, MoviesProduct } from './product.service';
 
 export interface ProductState {
   products: ReadonlyArray<MoviesProduct>;

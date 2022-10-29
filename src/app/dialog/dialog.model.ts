@@ -6,12 +6,12 @@ export enum RouteName {
 
 export enum ParamName {
   ORDER = 'order',
-  PRICE = 'price',
-  LIKENESS = 'likeness',
+  LIMIT = 'limit',
+  AUTHOR = 'author',
 }
 
 export interface QueryParamCollection {
   [ParamName.ORDER]: string;
-  [ParamName.PRICE]: number;
-  [ParamName.LIKENESS]: string;
+  [ParamName.LIMIT]: number;
+  [ParamName.AUTHOR]: string;
 }

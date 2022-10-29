@@ -21,7 +21,7 @@ export class Pop2Component implements OnInit {
   goto() {
     const queryParams: Partial<QueryParamCollection> = {
       [ParamName.ORDER]: 'Same',
-      [ParamName.PRICE]: 10,
+      [ParamName.LIMIT]: 10,
     };
     this._dialogService.gotoNavigation(RouteName.POP_3, queryParams);
   }

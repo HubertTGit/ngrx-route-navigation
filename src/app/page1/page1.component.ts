@@ -8,8 +8,8 @@ import {
   addAllBooks,
 } from '../state/actions';
 import { selectBookCollection, selectBooks } from '../state/book.selector';
-import { Book } from './book.model';
-import { BookService } from './book.service';
+import { Book } from '../services/book.model';
+import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-page1',
@@ -26,7 +26,7 @@ export class Page1Component implements OnInit {
   books: Book[] = [];
 
   ngOnInit(): void {
-    this._books.getBooks().subscribe({
+    this._books.getBooksByAuthor().subscribe({
       next: (books) => {
         this._store.dispatch(retrieveBooks({ books }));
       },

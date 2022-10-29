@@ -1,23 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { selectQueryParam, selectQueryParams } from '../app-routing.module';
+import { selectQueryParam } from '../app-routing.module';
 import { ParamName } from '../dialog/dialog.model';
-import { MovieService } from './product.service';
 import { routerNavigationAction } from '@ngrx/router-store';
-import {
-  catchError,
-  EMPTY,
-  filter,
-  map,
-  mergeMap,
-  of,
-  switchMap,
-  take,
-  tap,
-  throwError,
-} from 'rxjs';
+import { catchError, filter, mergeMap, of, switchMap, take, tap } from 'rxjs';
 import { loadAllProducts, loadProductsState } from './actions';
 import { Store } from '@ngrx/store';
+import { ProductService } from '../services/product.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,20 +14,20 @@ import { Store } from '@ngrx/store';
 export class ProductsEffectService {
   constructor(
     private actions$: Actions,
-    private moviesService: MovieService,
+    private productService: ProductService,
     private _store: Store
   ) {}
 
-  $movies = createEffect(
+  $products = createEffect(
     () =>
       this.actions$.pipe(
         ofType(routerNavigationAction),
         take(1),
         mergeMap(() => {
-          return this._store.select(selectQueryParam(ParamName.PRICE)).pipe(
+          return this._store.select(selectQueryParam(ParamName.LIMIT)).pipe(
             filter((f) => !!f),
             switchMap((limit) => {
-              return this.moviesService.getAllMovies(limit!).pipe(
+              return this.productService.getAllMovies(limit!).pipe(
                 tap((movies) => {
                   this._store.dispatch(
                     loadAllProducts({ products: movies.products })
