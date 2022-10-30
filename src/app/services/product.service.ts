@@ -21,7 +21,7 @@ export interface MoviesProduct {
 export class ProductService {
   constructor(private _http: HttpClient) {}
 
-  getAllproducts(limit: string): Observable<Movies> {
+  getAllproducts(limit: number): Observable<Movies> {
     return this._http.get<Movies>(
       `https://dummyjson.com/products?limit=${limit}&skip=10&select=title,price`
     );
