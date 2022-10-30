@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Params, Router, UrlTree } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { ParamName, QueryParamCollection, RouteName } from './dialog.model';
 
 @Injectable({
@@ -25,10 +24,11 @@ export class DialogService {
   }
 
   checkValidity(path: RouteName, qry: Partial<QueryParamCollection>): boolean {
+    const pop1 = [];
     const pop2 = [ParamName.AUTHOR];
     const pop3 = [ParamName.ORDER, ParamName.LIMIT];
 
-    if (path === RouteName.POP_1 && Object.keys(qry).length === 0) {
+    if (path === RouteName.POP_1 && pop1.length === 0) {
       return true;
     }
 
@@ -47,10 +47,9 @@ export class DialogService {
     sourceQry: Partial<QueryParamCollection>,
     allowedQry: ParamName[]
   ): boolean {
-    return (
-      Object.keys(sourceQry).every((v) =>
-        allowedQry.includes(v as ParamName)
-      ) && Object.keys(sourceQry).length > 0
-    );
+    const a = Object.keys(sourceQry).sort();
+    const b = allowedQry.sort();
+
+    return a.length === b.length && a.every((v, i) => v === b[i]);
   }
 }

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export interface Movies {
-  products: MoviesProduct[];
+export interface ProductResult {
+  products: Product[];
   total: number;
   skip: number;
   limit: number;
 }
 
-export interface MoviesProduct {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -21,8 +21,8 @@ export interface MoviesProduct {
 export class ProductService {
   constructor(private _http: HttpClient) {}
 
-  getAllproducts(limit: number): Observable<Movies> {
-    return this._http.get<Movies>(
+  getAllproducts(limit: number): Observable<ProductResult> {
+    return this._http.get<ProductResult>(
       `https://dummyjson.com/products?limit=${limit}&skip=10&select=title,price`
     );
   }

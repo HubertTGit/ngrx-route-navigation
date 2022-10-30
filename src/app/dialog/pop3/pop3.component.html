@@ -2,8 +2,8 @@
 
 <div mat-dialog-content>
   <p>Products</p>
-  <ul *ngIf="products$ | async as x">
-    <li *ngFor="let product of x.products">
+  <ul *ngIf="products$ | async as products">
+    <li *ngFor="let product of products">
       {{ product.title }} <strong>{{ product.price }}</strong>
     </li>
   </ul>

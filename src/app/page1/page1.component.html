@@ -1,7 +1,7 @@
 <h1>Books</h1>
 <button (click)="addAll()">add all</button>
-<ul *ngIf="bookState$ | async as bookState">
-  <li *ngFor="let book of bookState.books" class="pb-3">
+<ul *ngIf="books$ | async as books">
+  <li *ngFor="let book of books" class="pb-3">
     <small>{{ book.id }}</small>
     <div>
       <span class="font-bold">{{ book.volumeInfo.title }}</span> by

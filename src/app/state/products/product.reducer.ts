@@ -1,22 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { MoviesProduct } from 'src/app/services/product.service';
+import { Product } from 'src/app/services/product.service';
 import { loadAllProducts } from '../actions';
 
-export interface ProductState {
-  products: ReadonlyArray<MoviesProduct>;
-}
+const init: ReadonlyArray<Product> = [];
 
-const init: ProductState = {
-  products: [],
-};
-
-export const productsReducer = createReducer<ProductState, Action>(
+export const productsReducer = createReducer<ReadonlyArray<Product>, Action>(
   init,
-  on(loadAllProducts, (all, { products }) => {
-    const result = {
-      ...all,
-      ...{ products },
-    };
-    return result;
-  })
+  on(loadAllProducts, (all, { products }) => [...all, ...products])
 );

@@ -2,15 +2,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Book } from 'src/app/services/book.model';
 import { retrieveBooks } from '../actions';
 
-export interface BookState {
-  books: ReadonlyArray<Book>;
-}
+const init: ReadonlyArray<Book> = [];
 
-const init: BookState = {
-  books: [],
-};
-
-export const booksReducer = createReducer<BookState, Action>(
+export const booksReducer = createReducer<ReadonlyArray<Book>, Action>(
   init,
-  on(retrieveBooks, (state, { books }) => ({ ...state, ...{ books } }))
+  on(retrieveBooks, (state, { books }) => [...state, ...books])
 );

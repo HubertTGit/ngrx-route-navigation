@@ -35,16 +35,11 @@ export class StateGuard implements CanActivate {
   ): Observable<boolean | UrlTree> {
     const path = route.routeConfig?.path as RouteName;
 
-    return this._store
-      .select<Partial<QueryParamCollection>>(selectQueryParams)
-      .pipe(
-        take(1),
-        switchMap((qry) => {
-          if (this._dialogService.checkValidity(path, qry)) {
-            return of(true);
-          }
-          return of(this._dialogService.gotoTree(RouteName.POP_1));
-        })
-      );
+    const qry: Partial<QueryParamCollection> = route.queryParams;
+
+    if (this._dialogService.checkValidity(path, qry)) {
+      return of(true);
+    }
+    return of(this._dialogService.gotoTree(RouteName.POP_1));
   }
 }
