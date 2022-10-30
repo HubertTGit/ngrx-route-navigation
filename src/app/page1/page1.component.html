@@ -1,21 +1,27 @@
-<h1>Books</h1>
-<button (click)="addAll()">add all</button>
-<ul *ngIf="bookState$ | async as bookState">
-  <li *ngFor="let book of bookState.books" class="pb-3">
-    <small>{{ book.id }}</small>
-    <div>
-      <span class="font-bold">{{ book.volumeInfo.title }}</span> by
-      {{ book.volumeInfo.authors }}
-    </div>
-    <button (click)="add(book.id)">add</button>
-  </li>
-</ul>
-
-<h1>Collection</h1>
-<button (click)="removeAll()">remove all</button>
-<ul>
-  <li *ngFor="let collection of collection$ | async">
-    {{ collection?.volumeInfo?.title }}
-    <button (click)="remove(collection?.id!)">remove</button>
-  </li>
-</ul>
+<h1>PAGE 1</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio iure in illo
+  velit, hic doloremque natus, ut sequi quos, quo amet et non error a? Labore
+  praesentium enim distinctio earum!
+</p>
+<p>
+  Laboriosam tenetur molestiae inventore, non aut repellendus nulla magni natus
+  quo? Velit inventore sed reprehenderit omnis, in quaerat, ab, recusandae nulla
+  tempore enim accusantium a non itaque ullam dignissimos aperiam.
+</p>
+<p>
+  Saepe, totam nisi? Explicabo nobis velit doloribus suscipit nesciunt deleniti
+  autem quo dicta voluptates corrupti ex sint labore animi consequuntur, vel nam
+  consequatur sapiente voluptatem neque nostrum excepturi fugit. Quaerat.
+</p>
+<p>
+  Asperiores aperiam possimus voluptatibus obcaecati ratione qui. Dolor minus
+  molestiae quasi eius suscipit, aliquid reiciendis esse a! Ipsa aliquam,
+  commodi fugiat possimus quaerat modi magni! Aspernatur tenetur eligendi
+  provident possimus.
+</p>
+<p>
+  Eius sit vero nostrum esse, doloribus nesciunt aliquid consequuntur doloremque
+  dignissimos ab quos ipsum excepturi aliquam facere corrupti maiores animi
+  ullam, labore culpa. Qui culpa reiciendis ut modi fugit quidem?
+</p>

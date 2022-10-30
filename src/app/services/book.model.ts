@@ -5,8 +5,3 @@ export interface Book {
     authors: Array<string>;
   };
 }
-
-export interface BookState {
-  books: ReadonlyArray<Book>;
-  status: 'pending' | 'error' | 'success';
-}

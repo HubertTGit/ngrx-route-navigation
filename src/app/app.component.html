@@ -2,7 +2,12 @@
   <li class="p-3"><a routerLink="page1">page1</a></li>
   <li class="p-3"><a routerLink="page2">page2</a></li>
   <li class="p-3">
-    <a class="block bg-blue-500 rounded-lg" (click)="goto($event)">PopUp</a>
+    <button
+      class="block bg-blue-500 rounded-lg p-3 text-yellow-300"
+      (click)="goto($event)"
+    >
+      OPEN POPUP
+    </button>
   </li>
 </ul>
 

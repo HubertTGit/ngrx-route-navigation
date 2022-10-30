@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { selectQueryParam } from '../../app-routing.module';
 import { ParamName } from '../../dialog/dialog.model';
 import { routerNavigationAction } from '@ngrx/router-store';
-import { catchError, filter, mergeMap, of, switchMap, take, tap } from 'rxjs';
+import {
+  catchError,
+  combineLatest,
+  filter,
+  mergeMap,
+  of,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 import { retrieveBooks, setLoadStatus } from '../actions';
 import { Store } from '@ngrx/store';
 import { BookService } from 'src/app/services/book.service';
+import { selectQueryParam } from '../query.selection';
 
 @Injectable({
   providedIn: 'root',
@@ -24,8 +33,11 @@ export class BookEffectsService {
         ofType(routerNavigationAction),
         take(1),
         mergeMap(() => {
-          return this._store.select(selectQueryParam(ParamName.AUTHOR)).pipe(
-            switchMap((author) => {
+          return combineLatest([
+            this._store.select(selectQueryParam(ParamName.AUTHOR)),
+          ]).pipe(
+            filter((arr) => arr.every((f) => f)),
+            switchMap(([author]) => {
               return this.bookService.getBooksByAuthor(author!).pipe(
                 tap((books) => {
                   this._store.dispatch(retrieveBooks({ books }));

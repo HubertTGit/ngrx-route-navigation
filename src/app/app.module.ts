@@ -23,10 +23,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffectService } from './state/products/product.effect.service';
 import { booksReducer } from './state/books/books.reducer';
-import { collectionReducer } from './state/books/collection.reducer';
 import { productsReducer } from './state/products/product.reducer';
 import { BookEffectsService } from './state/books/book.effects.service';
 import { statusReducer } from './state/status/status.reducer';
+import { Pop4Component } from './dialog/pop4/pop4.component';
+import { SuccessStore } from './state/success/success.store';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { statusReducer } from './state/status/status.reducer';
     Pop1Component,
     Pop2Component,
     Pop3Component,
+    Pop4Component,
     TitleComponent,
     Pop3Component,
     NotfoundComponent,
@@ -49,7 +51,6 @@ import { statusReducer } from './state/status/status.reducer';
     MatDialogModule,
     StoreModule.forRoot({
       books: booksReducer,
-      collection: collectionReducer,
       router: routerReducer,
       products: productsReducer,
       status: statusReducer,
@@ -60,5 +61,6 @@ import { statusReducer } from './state/status/status.reducer';
     EffectsModule.forRoot([ProductsEffectService, BookEffectsService]),
   ],
   bootstrap: [AppComponent],
+  providers: [SuccessStore],
 })
 export class AppModule {}

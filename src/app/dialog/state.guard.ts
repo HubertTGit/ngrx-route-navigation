@@ -1,33 +1,19 @@
-import { ApplicationInitStatus, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { delay, from, Observable, of, switchMap, take } from 'rxjs';
-import {
-  selectCurrentRoute,
-  selectRouteParams,
-  selectUrl,
-  selectFragment,
-  selectQueryParams,
-} from '../app-routing.module';
-import { ParamName, QueryParamCollection, RouteName } from './dialog.model';
+import { Observable, of } from 'rxjs';
+import { QueryParamCollection, RouteName } from './dialog.model';
 import { DialogService } from './dialog.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StateGuard implements CanActivate {
-  constructor(
-    private _store: Store,
-    private _dialogService: DialogService,
-    private _router: Router,
-    private _initStatus: ApplicationInitStatus
-  ) {}
+  constructor(private _dialogService: DialogService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -35,16 +21,11 @@ export class StateGuard implements CanActivate {
   ): Observable<boolean | UrlTree> {
     const path = route.routeConfig?.path as RouteName;
 
-    return this._store
-      .select<Partial<QueryParamCollection>>(selectQueryParams)
-      .pipe(
-        take(1),
-        switchMap((qry) => {
-          if (this._dialogService.checkValidity(path, qry)) {
-            return of(true);
-          }
-          return of(this._dialogService.gotoTree(RouteName.POP_1));
-        })
-      );
+    const qry: Partial<QueryParamCollection> = route.queryParams;
+
+    if (this._dialogService.checkValidity(path, qry)) {
+      return of(true);
+    }
+    return of(this._dialogService.gotoTree(RouteName.POP_1));
   }
 }

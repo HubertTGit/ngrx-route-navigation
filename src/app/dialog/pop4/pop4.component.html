@@ -1,0 +1,7 @@
+<app-title>RESULT</app-title>
+
+<div mat-dialog-content>
+  <div *ngIf="success$ | async as result">
+    {{ result | json }}
+  </div>
+</div>

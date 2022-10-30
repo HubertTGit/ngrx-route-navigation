@@ -14,7 +14,7 @@ export class Pop1Component {
 
   next() {
     const params: Partial<QueryParamCollection> = {
-      [ParamName.AUTHOR]: 'blue',
+      [ParamName.AUTHOR]: 'J.K. Rowling',
     };
 
     this._router.navigateByUrl(
