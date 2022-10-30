@@ -36,6 +36,7 @@ export class ProductsEffectService {
                 }),
                 catchError((error) => {
                   this._store.dispatch(loadProductsState({ state: 'error' }));
+                  this._store.dispatch(loadProductsState({ state: 'pending' }));
                   return of('error');
                 })
               );

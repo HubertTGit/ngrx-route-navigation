@@ -25,7 +25,6 @@ export class BookEffectsService {
         take(1),
         mergeMap(() => {
           return this._store.select(selectQueryParam(ParamName.AUTHOR)).pipe(
-            // filter((f) => !!f),
             switchMap((author) => {
               return this.bookService.getBooksByAuthor(author!).pipe(
                 tap((books) => {
@@ -34,6 +33,7 @@ export class BookEffectsService {
                 }),
                 catchError((error) => {
                   this._store.dispatch(loadBooksState({ state: 'error' }));
+                  this._store.dispatch(loadBooksState({ state: 'pending' }));
                   return of('error');
                 })
               );

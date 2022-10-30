@@ -24,7 +24,6 @@ export class Pop2Component implements OnInit {
         console.log(result);
         if (result === 'error') {
           this._dialogService.gotoNavigation(RouteName.POP_1);
-          this._store.dispatch(loadBooksState({ state: 'pending' }));
         }
       },
     });

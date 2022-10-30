@@ -38,3 +38,8 @@ export const loadProductsState = createAction(
   '[products] load products state',
   props<{ state: 'error' | 'success' | 'pending' }>()
 );
+
+export const setLoadStatus = createAction(
+  '[load status] load state',
+  props<{ state: 'error' | 'success' | 'pending' }>()
+);

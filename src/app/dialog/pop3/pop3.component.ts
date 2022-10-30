@@ -28,7 +28,6 @@ export class Pop3Component implements OnInit {
       next: (result) => {
         if (result === 'error') {
           this.dialoService.gotoNavigation(RouteName.POP_1);
-          this._store.dispatch(loadProductsState({ state: 'pending' }));
         }
       },
     });
