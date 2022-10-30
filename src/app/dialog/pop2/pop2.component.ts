@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { selectBooks } from 'src/app/state/books/book.selector';
 import { selectStatus } from 'src/app/state/status/status.selector';
 import { ParamName, QueryParamCollection, RouteName } from '../dialog.model';
@@ -16,20 +17,17 @@ export class Pop2Component implements OnInit {
   state$ = this._store.select(selectStatus);
 
   prevPath = RouteName.POP_1;
+
   constructor(private _dialogService: DialogService, private _store: Store) {}
 
   ngOnInit(): void {
-    this.state$.subscribe({
+    this.state$.pipe(take(1)).subscribe({
       next: (result) => {
         if (result.state === 'error') {
           this._dialogService.gotoNavigation(RouteName.POP_1);
         }
       },
     });
-  }
-
-  previous() {
-    this._dialogService.gotoNavigation(RouteName.POP_1);
   }
 
   goto() {

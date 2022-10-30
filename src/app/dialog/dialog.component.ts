@@ -35,6 +35,7 @@ export class DialogComponent implements OnInit {
           role: 'dialog',
           enterAnimationDuration: '0ms',
           exitAnimationDuration: '0ms',
+          minWidth: '500px',
         });
 
         ref.backdropClick().subscribe({

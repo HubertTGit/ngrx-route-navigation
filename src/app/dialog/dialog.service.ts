@@ -27,6 +27,7 @@ export class DialogService {
     const pop1 = [];
     const pop2 = [ParamName.AUTHOR];
     const pop3 = [ParamName.ORDER, ParamName.LIMIT];
+    const pop4 = [ParamName.SUCCESS];
 
     if (path === RouteName.POP_1 && pop1.length === 0) {
       return true;
@@ -37,6 +38,10 @@ export class DialogService {
     }
 
     if (path === RouteName.POP_3 && this.comparisonHelper(qry, pop3)) {
+      return true;
+    }
+
+    if (path === RouteName.POP_4 && this.comparisonHelper(qry, pop4)) {
       return true;
     }
 

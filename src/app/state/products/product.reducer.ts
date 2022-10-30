@@ -6,5 +6,5 @@ const init: ReadonlyArray<Product> = [];
 
 export const productsReducer = createReducer<ReadonlyArray<Product>, Action>(
   init,
-  on(loadAllProducts, (all, { products }) => [...all, ...products])
+  on(loadAllProducts, (all, { products }) => [...products])
 );

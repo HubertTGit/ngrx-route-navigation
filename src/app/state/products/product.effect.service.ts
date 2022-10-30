@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { selectQueryParam } from '../../app-routing.module';
 import { ParamName } from '../../dialog/dialog.model';
 import { routerNavigationAction } from '@ngrx/router-store';
-import { catchError, filter, mergeMap, of, switchMap, take, tap } from 'rxjs';
+import {
+  catchError,
+  combineLatest,
+  filter,
+  mergeMap,
+  of,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 import { loadAllProducts, setLoadStatus } from '../actions';
 import { Store } from '@ngrx/store';
 import { ProductService } from '../../services/product.service';
+import { selectQueryParam } from '../query.selection';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +33,11 @@ export class ProductsEffectService {
         ofType(routerNavigationAction),
         take(1),
         mergeMap(() => {
-          return this._store.select(selectQueryParam(ParamName.LIMIT)).pipe(
-            filter((f) => !!f),
-            switchMap((limit) => {
+          return combineLatest([
+            this._store.select(selectQueryParam(ParamName.LIMIT)),
+          ]).pipe(
+            filter((arr) => arr.every((f) => f)),
+            switchMap(([limit]) => {
               return this.productService.getAllproducts(+limit!).pipe(
                 tap((movies) => {
                   this._store.dispatch(
