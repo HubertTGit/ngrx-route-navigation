@@ -11,8 +11,3 @@ export const selectBookCollection = createSelector(
   (booksState, collections) =>
     collections.map((id) => booksState.books.find((book) => book.id === id))
 );
-
-export const loadBookState = createSelector(
-  selectBooks,
-  (state) => state.status
-);
