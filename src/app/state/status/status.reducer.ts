@@ -9,7 +9,7 @@ const init: StatusState = {
   state: 'pending',
 };
 
-export const productsReducer = createReducer<StatusState, Action>(
+export const statusReducer = createReducer<StatusState, Action>(
   init,
   on(setLoadStatus, (all, { state }) => {
     return { state };

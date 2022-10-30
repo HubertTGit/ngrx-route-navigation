@@ -4,7 +4,7 @@ import { selectQueryParam } from '../../app-routing.module';
 import { ParamName } from '../../dialog/dialog.model';
 import { routerNavigationAction } from '@ngrx/router-store';
 import { catchError, filter, mergeMap, of, switchMap, take, tap } from 'rxjs';
-import { loadAllProducts, loadProductsState } from '../actions';
+import { loadAllProducts, setLoadStatus } from '../actions';
 import { Store } from '@ngrx/store';
 import { ProductService } from '../../services/product.service';
 
@@ -32,11 +32,11 @@ export class ProductsEffectService {
                   this._store.dispatch(
                     loadAllProducts({ products: movies.products })
                   );
-                  this._store.dispatch(loadProductsState({ state: 'success' }));
+                  this._store.dispatch(setLoadStatus({ state: 'success' }));
                 }),
                 catchError((error) => {
-                  this._store.dispatch(loadProductsState({ state: 'error' }));
-                  this._store.dispatch(loadProductsState({ state: 'pending' }));
+                  this._store.dispatch(setLoadStatus({ state: 'error' }));
+                  this._store.dispatch(setLoadStatus({ state: 'pending' }));
                   return of('error');
                 })
               );

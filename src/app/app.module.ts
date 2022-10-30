@@ -26,6 +26,7 @@ import { booksReducer } from './state/books/books.reducer';
 import { collectionReducer } from './state/books/collection.reducer';
 import { productsReducer } from './state/products/product.reducer';
 import { BookEffectsService } from './state/books/book.effects.service';
+import { statusReducer } from './state/status/status.reducer';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { BookEffectsService } from './state/books/book.effects.service';
       collection: collectionReducer,
       router: routerReducer,
       products: productsReducer,
+      status: statusReducer,
     }),
     StoreRouterConnectingModule.forRoot({
       navigationActionTiming: NavigationActionTiming.PreActivation,

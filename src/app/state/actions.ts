@@ -24,19 +24,9 @@ export const retrieveBooks = createAction(
   props<{ books: ReadonlyArray<Book> }>()
 );
 
-export const loadBooksState = createAction(
-  '[collection] setbook load state',
-  props<{ state: 'pending' | 'success' | 'error' }>()
-);
-
 export const loadAllProducts = createAction(
   '[products] load all products',
   props<{ products: ReadonlyArray<MoviesProduct> }>()
-);
-
-export const loadProductsState = createAction(
-  '[products] load products state',
-  props<{ state: 'error' | 'success' | 'pending' }>()
 );
 
 export const setLoadStatus = createAction(

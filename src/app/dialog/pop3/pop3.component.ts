@@ -1,10 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadProductsState } from 'src/app/state/actions';
-import {
-  selectProducts,
-  selectProductState,
-} from 'src/app/state/products/products.selector';
+import { selectProducts } from 'src/app/state/products/products.selector';
+import { selectStatus } from 'src/app/state/status/status.selector';
 
 import { RouteName } from '../dialog.model';
 import { DialogService } from '../dialog.service';
@@ -17,7 +14,7 @@ import { DialogService } from '../dialog.service';
 })
 export class Pop3Component implements OnInit {
   products$ = this._store.select(selectProducts);
-  state$ = this._store.select(selectProductState);
+  state$ = this._store.select(selectStatus);
 
   constructor(private _store: Store, private dialoService: DialogService) {}
 
@@ -26,7 +23,7 @@ export class Pop3Component implements OnInit {
   ngOnInit(): void {
     this.state$.subscribe({
       next: (result) => {
-        if (result === 'error') {
+        if (result.state === 'error') {
           this.dialoService.gotoNavigation(RouteName.POP_1);
         }
       },

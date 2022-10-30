@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { BookState } from 'src/app/services/book.model';
-import { loadBooksState, retrieveBooks } from '../actions';
+import { retrieveBooks } from '../actions';
 
 const init: BookState = {
   books: [],
@@ -9,6 +9,5 @@ const init: BookState = {
 
 export const booksReducer = createReducer<BookState, Action>(
   init,
-  on(retrieveBooks, (state, { books }) => ({ ...state, ...{ books } })),
-  on(loadBooksState, (all, { state }) => ({ ...all, ...{ status: state } }))
+  on(retrieveBooks, (state, { books }) => ({ ...state, ...{ books } }))
 );
