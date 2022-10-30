@@ -27,7 +27,7 @@ export class ProductsEffectService {
           return this._store.select(selectQueryParam(ParamName.LIMIT)).pipe(
             filter((f) => !!f),
             switchMap((limit) => {
-              return this.productService.getAllMovies(limit!).pipe(
+              return this.productService.getAllproducts(limit!).pipe(
                 tap((movies) => {
                   this._store.dispatch(
                     loadAllProducts({ products: movies.products })
